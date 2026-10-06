@@ -9,6 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "verify": "node scripts/verify-build.mjs",
+    "test:ui": "node scripts/test-ui.mjs",
     "astro": "astro"
   },
   "dependencies": {

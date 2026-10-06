@@ -1,0 +1,12 @@
+---
+import type { Project } from '../../lib/projects';
+import StatBlock from '../ui/StatBlock.astro';
+interface Props { project: Project; }
+const { project: { data } } = Astro.props;
+const resources = [...data.links, ...data.publications, ...data.documents.map(document => ({ label: document.label, url: document.src })), ...(data.github ? [{ label: 'Source repository', url: data.github }] : [])];
+const groups = [{ label: 'Capabilities', values: data.capabilities }, { label: 'Technologies', values: data.technologies }, { label: 'Disciplines', values: data.disciplines }].filter(group => group.values.length);
+---
+{data.results.length > 0 && <section><h2>Quantitative results</h2><div class="stats">{data.results.map(result => <StatBlock {...result} />)}</div></section>}
+{data.specifications.length > 0 && <section><h2>Technical specifications</h2><dl class="metadata">{data.specifications.map(spec => <div><dt>{spec.label}</dt><dd>{spec.value}</dd></div>)}</dl></section>}
+{groups.length > 0 && <section><h2>Technical domains & tools</h2><dl>{groups.map(group => <div><dt>{group.label}</dt><dd>{group.values.join(' · ')}</dd></div>)}</dl></section>}
+{resources.length > 0 && <section><h2>Resources & documentation</h2><ul class="resource-list">{resources.map(resource => <li><a href={resource.url}>{resource.label} ↗</a></li>)}</ul></section>}

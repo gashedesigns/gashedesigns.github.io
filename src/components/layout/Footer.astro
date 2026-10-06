@@ -1,0 +1,5 @@
+---
+import Container from '../ui/Container.astro';
+import { site } from '../../data/site';
+---
+<footer class="site-footer"><Container><div class="footer-inner"><span>© {new Date().getFullYear()} {site.name} · Engineering physics</span><a href={site.github}>GitHub ↗</a><span>Designed around the experiment.</span></div></Container></footer>

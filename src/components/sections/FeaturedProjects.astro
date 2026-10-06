@@ -1,0 +1,9 @@
+---
+import Section from '../ui/Section.astro';
+import ProjectGrid from './ProjectGrid.astro';
+import type { Project } from '../../lib/projects';
+interface Props { projects: Project[]; }
+const { projects } = Astro.props;
+const featured = projects.filter(p => p.data.featured && p.data.category === 'diagnostics').slice(0, 4);
+---
+<Section id="featured" eyebrow="01 / Experimental systems" title="Hardware at the heart of the work." description="Optical diagnostics, distributed instrumentation, and embedded sensing. These starter case studies are ready for verified project details."><a slot="action" class="section-link" href="/projects/#diagnostics">All experimental work ↗</a><ProjectGrid projects={featured} wide={featured.length === 4} /></Section>

@@ -1,0 +1,79 @@
+@import './tokens.css';
+@import './typography.css';
+@import './utilities.css';
+@import './layout.css';
+@import './sections.css';
+@import './projects.css';
+@import './media.css';
+@import './motion.css';
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: var(--leading-body);
+  font-size: var(--text-base);
+}
+
+a {
+  color: inherit;
+  text-underline-offset: var(--underline-offset);
+}
+
+.prose a, .section-link, .capability a, .category-nav a {
+  color: var(--color-accent);
+}
+
+.prose a:hover, .section-link:hover, .capability a:hover {
+  color: var(--color-accent-hover);
+}
+
+html {
+  scroll-padding-top: calc(var(--header-height) + var(--space-lg));
+}
+
+@media (max-width: 700px) {
+  html {
+    scroll-padding-top: calc(var(--header-mobile-height) + var(--space-lg));
+  }
+}
+
+img, svg, video {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button, input {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: var(--border-emphasis) solid var(--color-accent);
+  outline-offset: var(--focus-offset);
+}
+
+::selection {
+  background: var(--color-selection);
+  color: var(--color-text);
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--skip-offset);
+  left: var(--space-unit);
+  padding: var(--space-sm);
+  z-index: var(--layer-overlay);
+  background: var(--color-surface);
+}
+
+.skip-link:focus {
+  top: var(--space-unit);
+}

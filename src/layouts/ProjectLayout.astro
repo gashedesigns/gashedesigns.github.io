@@ -1,0 +1,19 @@
+---
+import type { MarkdownHeading } from 'astro';
+import BaseLayout from './BaseLayout.astro';
+import ProjectHero from '../components/project/ProjectHero.astro';
+import ProjectMetadata from '../components/project/ProjectMetadata.astro';
+import ProjectGallery from '../components/project/ProjectGallery.astro';
+import TechnicalDetails from '../components/project/TechnicalDetails.astro';
+import RelatedProjects from '../components/project/RelatedProjects.astro';
+import Container from '../components/ui/Container.astro';
+import Callout from '../components/ui/Callout.astro';
+import type { Project } from '../lib/projects';
+interface Props { project: Project; projects: Project[]; headings: MarkdownHeading[]; }
+const { project, projects, headings } = Astro.props;
+const sections = headings.filter(heading => heading.depth === 2);
+---
+<BaseLayout title={project.data.title} description={project.data.summary} image={typeof project.data.heroImage === 'string' ? project.data.heroImage : project.data.heroImage?.src} imageAlt={project.data.heroImageAlt} type="article" tags={project.data.tags}><ProjectHero project={project} /><Container><ProjectMetadata project={project} />
+{project.data.status === 'starter' && <Callout><strong>Starter case study.</strong> This entry establishes the portfolio structure. Its scope and section prompts are illustrative; contributions, dates, results, and media require verification.</Callout>}
+{(project.data.confidential || project.data.limitedDetail) && <Callout>Public documentation is limited. Only information cleared for public sharing belongs in this case study.</Callout>}
+<div class:list={['case-study', { 'case-study-no-nav': sections.length === 0 }]}>{sections.length > 0 && <nav class="case-nav" aria-label="On this project"><p class="eyebrow">In this case study</p><ul>{sections.map(heading => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul></nav>}<div class="prose"><slot /><ProjectGallery project={project} /><TechnicalDetails project={project} /></div></div></Container><RelatedProjects project={project} projects={projects} /></BaseLayout>

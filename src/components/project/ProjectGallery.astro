@@ -1,0 +1,9 @@
+---
+import MediaFrame from '../ui/MediaFrame.astro';
+import VideoFrame from '../ui/VideoFrame.astro';
+import type { Project } from '../../lib/projects';
+interface Props { project: Project; }
+const { project: { data } } = Astro.props;
+---
+{data.gallery.length > 0 && <section aria-label="Project gallery" data-section="project-gallery"><h2>Project gallery</h2><div class="gallery" data-gallery>{data.gallery.map(item => <MediaFrame {...item} />)}</div></section>}
+{(data.videos.length > 0 || data.videoEmbeds.length > 0) && <section aria-label="Project videos" data-section="project-videos"><h2>Project videos</h2>{data.videos.map(video => <VideoFrame {...video} />)}{data.videoEmbeds.map(video => <VideoFrame {...video} />)}</section>}

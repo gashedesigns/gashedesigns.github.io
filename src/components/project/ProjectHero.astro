@@ -1,0 +1,10 @@
+---
+import Container from '../ui/Container.astro';
+import MediaFrame from '../ui/MediaFrame.astro';
+import Tag from '../ui/Tag.astro';
+import { categories } from '../../data/site';
+import type { Project } from '../../lib/projects';
+interface Props { project: Project; }
+const { project: { data } } = Astro.props;
+---
+<header class="page-intro project-hero" data-section="project-hero" data-accent={data.accent}><Container><p class="eyebrow"><a href="/projects/">Projects</a> / {categories[data.category].shortLabel}</p><h1>{data.title}</h1><p class="lede prose">{data.summary}</p><div class="tags">{data.tags.map(tag => <Tag>{tag}</Tag>)}</div>{data.heroImage && <MediaFrame src={data.heroImage} alt={data.heroImageAlt} width={data.heroImageWidth} height={data.heroImageHeight} caption={data.heroImageCaption} eager />}</Container></header>

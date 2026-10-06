@@ -1,0 +1,7 @@
+---
+import ProjectCard from '../project/ProjectCard.astro';
+import type { Project } from '../../lib/projects';
+interface Props { projects: Project[]; wide?: boolean; }
+const { projects, wide = false } = Astro.props;
+---
+<div class:list={['project-grid', { 'project-grid-wide': wide }]}>{projects.map(project => <div class="project-grid-item" data-reveal><ProjectCard project={project} /></div>)}</div>

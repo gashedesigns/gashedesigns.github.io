@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props {
+  src?: string | ImageMetadata;
+  alt?: string;
+  caption?: string;
+  label?: string;
+  eager?: boolean;
+  width?: number;
+  height?: number;
+  orientation?: 'auto' | 'portrait' | 'landscape';
+  kind?: 'image' | 'diagram' | 'cad' | 'render' | 'plot';
+  variant?: 'natural' | 'card';
+}
+const { src, alt = '', caption, label = 'Technical media', eager = false, width, height, orientation = 'auto', kind = 'image', variant = 'natural' } = Astro.props;
+---
+<figure class:list={['media-frame', `media-${variant}`]} data-media={kind} data-orientation={orientation} data-media-src={typeof src === 'string' ? src : src?.src}>
+  {src ? (typeof src === 'string'
+    ? <img src={src} alt={alt} width={width} height={height} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+    : <Image src={src} alt={alt} layout="constrained" width={width ?? src.width} height={height ?? src.height} loading={eager ? 'eager' : 'lazy'} decoding="async" />)
+    : <div class="media-placeholder" aria-hidden="true">
+    <svg viewBox="0 0 320 100" fill="none"><path d="M12 50h54m68 0h52m68 0h54" stroke="currentColor" stroke-width="2"/><rect x="66" y="22" width="68" height="56" rx="3" stroke="currentColor"/><circle cx="100" cy="50" r="17" stroke="currentColor"/><path d="M100 29v42M79 50h42" stroke="currentColor" stroke-dasharray="3 3"/><rect x="186" y="22" width="68" height="56" rx="3" stroke="currentColor"/><path d="M195 56l8-18 9 25 9-27 9 22 15-13" stroke="currentColor"/><path d="M160 50v39H100V78" stroke="currentColor" stroke-dasharray="4 4"/></svg>
+    <span>{label} / schematic placeholder</span>
+  </div>}
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

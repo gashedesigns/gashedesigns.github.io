@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import CapabilityOverview from '../components/sections/CapabilityOverview.astro';
+import ContactCTA from '../components/sections/ContactCTA.astro';
+import { site, background } from '../data/site';
+---
+<BaseLayout title="About"><section class="page-intro" data-section="about"><Container><p class="eyebrow">About / {site.name}</p><h1>Engineering across disciplines.</h1><div class="prose"><p class="lede">{background.summary}</p><p>This portfolio is organized around the engineering system: what needs to be measured, how the hardware is built, and how the resulting data becomes useful.</p><p>Experimental diagnostics lead the work, followed by design and fabrication, instrumentation and controls, and scientific computing.</p><p class="muted">This is editable introductory copy. A personal biography and verified background will be added here.</p></div></Container></section><CapabilityOverview /><ContactCTA /></BaseLayout>

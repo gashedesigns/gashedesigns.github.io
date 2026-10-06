@@ -1,17 +1,26 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import ProjectGrid from '../components/sections/ProjectGrid.astro';
+import ExperienceSummary from '../components/sections/ExperienceSummary.astro';
+import ContactCTA from '../components/sections/ContactCTA.astro';
+import Section from '../components/ui/Section.astro';
+import { getProjects } from '../lib/projects';
+import { background, categories } from '../data/site';
+const projects = await getProjects();
+// A compact cross-section of the archive; the full index retains every project.
+const preview = Object.keys(categories).flatMap(category => projects.filter(project => project.data.category === category).slice(0, 1));
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <Hero />
+  <Section id="projects" navSection="projects" title="Projects" description="A selection of experimental instruments, integrated controls, fabricated hardware, and computational tools.">
+    <a slot="action" class="section-link" href="/projects/">Explore all projects ↗</a>
+    <ProjectGrid projects={preview} wide />
+  </Section>
+  <ExperienceSummary />
+  <Section id="about" navSection="about" title="About" alternate>
+    <a slot="action" class="section-link" href="/about/">More about George ↗</a>
+    <div class="split" data-reveal><p class="lede">{background.summary}</p><div><p>This portfolio follows the engineering system: what needs to be measured, how the hardware is built, and how the resulting data becomes useful.</p><p class="muted">Experimental diagnostics, physical engineering, and scientific computing, connected by the work.</p></div></div>
+  </Section>
+  <ContactCTA />
+</BaseLayout>

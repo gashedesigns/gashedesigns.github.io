@@ -1,0 +1,24 @@
+---
+import MediaFrame from '../ui/MediaFrame.astro';
+import Tag from '../ui/Tag.astro';
+import Icon from '../ui/Icon.astro';
+import { categories } from '../../data/site';
+import { projectUrl, type Project } from '../../lib/projects';
+interface Props { project: Project; }
+const { project } = Astro.props;
+const { data } = project;
+---
+<article class="project-card" data-project-card data-category={data.category} data-accent={data.accent}>
+  <a class="card-link" href={projectUrl(project)}>
+    <div class="card-media">
+      <MediaFrame src={data.heroImage} alt={data.heroImageAlt} width={data.heroImageWidth} height={data.heroImageHeight} variant="card" label={categories[data.category].shortLabel} />
+    </div>
+    <div class="card-body">
+      <p class="eyebrow">{data.organization ?? categories[data.category].shortLabel}</p>
+      <h3>{data.shortTitle ?? data.title}</h3>
+      <p>{data.summary}</p>
+      <div class="tags">{data.tags.slice(0, 3).map(tag => <Tag>{tag}</Tag>)}</div>
+    </div>
+    <div class="card-footer"><span>{data.status === 'starter' ? 'Starter case study' : 'View case study'}</span><Icon name="external" /></div>
+  </a>
+</article>

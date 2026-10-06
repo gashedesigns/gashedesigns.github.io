@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Section from '../../components/ui/Section.astro';
+import ProjectGrid from '../../components/sections/ProjectGrid.astro';
+import { categories } from '../../data/site';
+import { getProjects } from '../../lib/projects';
+const projects = await getProjects();
+---
+<BaseLayout title="Projects"><header class="page-intro" data-section="project-index"><Container><p class="eyebrow">Engineering / Selected work</p><h1>Systems, instruments & ideas.</h1><p class="lede prose">Experimental hardware first. Design, sensing, and computation in support of the system.</p><p class="muted">Starter entries are labeled and await verified project documentation.</p><nav class="category-nav" aria-label="Project categories">{Object.entries(categories).map(([key, category]) => <a href={`#${key}`}>{category.shortLabel}</a>)}</nav></Container></header>{Object.entries(categories).map(([key, category], index) => <Section id={key} title={category.label} description={category.description} alternate={index % 2 === 1}><ProjectGrid projects={projects.filter(project => project.data.category === key)} /></Section>)}</BaseLayout>

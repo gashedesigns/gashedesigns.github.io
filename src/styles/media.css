@@ -1,0 +1,109 @@
+.media-frame {
+  margin: 0;
+  background: var(--color-surface-alt);
+  min-width: 0;
+}
+
+.media-frame img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.media-card img {
+  aspect-ratio: var(--ratio-card);
+  object-fit: contain;
+}
+
+.media-frame[data-orientation='portrait'] {
+  max-width: var(--media-portrait-width);
+  justify-self: center;
+}
+
+.media-frame figcaption {
+  padding: var(--space-sm) var(--space-unit);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.media-placeholder {
+  aspect-ratio: var(--ratio-card);
+  padding: var(--space-lg);
+  display: grid;
+  align-content: center;
+  gap: var(--space-unit);
+  color: var(--color-diagram-line);
+  background-color: var(--color-surface-alt);
+  background-image: linear-gradient(var(--color-grid) var(--border-thin), transparent var(--border-thin)), linear-gradient(90deg, var(--color-grid) var(--border-thin), transparent var(--border-thin));
+  background-size: var(--grid-size) var(--grid-size);
+}
+
+.media-placeholder svg {
+  width: 100%;
+  height: var(--placeholder-height);
+}
+
+.media-placeholder span {
+  font: var(--text-xs) var(--font-mono);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  align-items: start;
+}
+
+.gallery > :only-child {
+  grid-column: 1 / -1;
+}
+
+.video-frame {
+  margin-block: var(--space-lg);
+}
+
+.video-frame video, .video-frame iframe {
+  width: 100%;
+  aspect-ratio: var(--ratio-video);
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+.media-frame {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.media-card {
+  border-radius: 0;
+}
+
+.media-frame:is([data-media='diagram'], [data-media='plot'], [data-media='cad']) {
+  border: var(--border-thin) solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.technical-diagram {
+  color: var(--color-diagram-line);
+  background: var(--color-surface-alt);
+  border: var(--border-thin) solid var(--color-border);
+  padding: var(--space-md);
+}
+
+.technical-diagram .diagram-signal {
+  stroke: var(--color-diagram-signal);
+}
+
+.technical-diagram text {
+  fill: var(--color-text-muted);
+  font-family: var(--font-mono);
+}

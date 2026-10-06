@@ -1,0 +1,10 @@
+---
+import Section from '../ui/Section.astro';
+import ProjectGrid from '../sections/ProjectGrid.astro';
+import { projectSlug, type Project } from '../../lib/projects';
+interface Props { project: Project; projects: Project[]; }
+const { project, projects } = Astro.props;
+const others = projects.filter(other => other.id !== project.id);
+const related = (project.data.relatedProjects.length ? others.filter(other => project.data.relatedProjects.includes(projectSlug(other))) : others.filter(other => other.data.category === project.data.category)).slice(0, 3);
+---
+{related.length > 0 && <Section id="related-projects" title="Related work" eyebrow="Continue exploring"><ProjectGrid projects={related} /></Section>}

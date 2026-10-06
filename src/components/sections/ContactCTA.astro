@@ -1,0 +1,6 @@
+---
+import Container from '../ui/Container.astro';
+import Button from '../ui/Button.astro';
+import { site } from '../../data/site';
+---
+<section class="section contact" id="contact" data-section="contact" aria-label="Contact"><Container><div class="split"><div><h2>Let’s build something<br />worth measuring.</h2><p>Experimental systems · Research instrumentation · Advanced engineering</p></div><div><div class="actions"><Button href={site.github} variant="secondary" icon="external">GitHub</Button>{site.email && <Button href={`mailto:${site.email}`} variant="secondary">Email George</Button>}{site.linkedin && <a href={site.linkedin}>LinkedIn ↗</a>}</div>{!site.email && <p class="pending">Email: to be supplied</p>}{!site.linkedin && <p class="pending">LinkedIn: to be supplied</p>}</div></div></Container></section>

@@ -1,0 +1,5 @@
+---
+import Section from '../ui/Section.astro';
+import { capabilities } from '../../data/site';
+---
+<Section id="capabilities" eyebrow="Technical domains" title="From physical system to usable data." description="Capabilities organized around engineering work, with project evidence collected in each domain." alternate><div class="capability-grid">{capabilities.map(group => <article class="capability" data-reveal><h3>{group.title}</h3><ul>{group.items.map(item => <li>{item}</li>)}</ul><a href={`/projects/#${group.category}`}>Explore the domain ↗</a></article>)}</div></Section>

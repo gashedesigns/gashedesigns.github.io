@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  src?: string;
+  poster?: string;
+  provider?: 'youtube' | 'vimeo';
+  id?: string;
+  tracks?: { src: string; language: string; label: string }[];
+}
+const { title, src, poster, provider, id, tracks = [] } = Astro.props;
+const embedUrl = provider === 'youtube' ? `https://www.youtube-nocookie.com/embed/${id}` : `https://player.vimeo.com/video/${id}`;
+---
+<figure class="media-frame video-frame" data-media={src ? 'video' : 'video-embed'}>
+  {src ? <video controls preload="none" poster={poster} aria-label={title} src={src}>
+    {tracks.map(track => <track kind="captions" src={track.src} srclang={track.language} label={track.label} />)}
+    <a href={src}>Download {title}</a>
+  </video> : <iframe src={embedUrl} title={title} loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen; picture-in-picture" allowfullscreen />}
+  <figcaption>{title}</figcaption>
+</figure>

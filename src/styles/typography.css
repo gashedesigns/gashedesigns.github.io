@@ -1,0 +1,85 @@
+h1, h2, h3, h4 {
+  overflow-wrap: anywhere;
+  font-family: var(--font-heading);
+  line-height: var(--leading-heading);
+  font-weight: var(--weight-semibold);
+  margin: 0 0 var(--space-md);
+  letter-spacing: var(--tracking-heading);
+}
+
+h2 {
+  font-size: var(--text-xl);
+}
+
+p {
+  margin: 0 0 var(--space-md);
+}
+
+.eyebrow {
+  font: var(--text-xs) var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--color-accent);
+  margin-bottom: var(--space-md);
+}
+
+.lede {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.prose {
+  max-width: var(--prose-width);
+  overflow-wrap: anywhere;
+}
+
+.prose h2 {
+  margin-top: var(--space-xl);
+  scroll-margin-top: var(--space-lg);
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.prose h3 {
+  margin-top: var(--space-lg);
+}
+
+.prose img {
+  border-radius: var(--radius-sm);
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: var(--space-md);
+  border-radius: var(--radius-sm);
+}
+
+.prose table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.prose td, .prose th {
+  padding: var(--space-sm);
+  border: var(--border-thin) solid var(--color-border);
+}
+
+.prose :not(pre) > code {
+  color: var(--color-text);
+  background: var(--color-code-bg);
+  padding-inline: var(--space-2xs);
+  border-radius: var(--radius-sm);
+}
+
+.prose pre {
+  border: var(--border-thin) solid var(--color-border);
+}
+
+.prose blockquote {
+  margin-inline: 0;
+  padding-left: var(--space-md);
+  border-left: var(--border-emphasis) solid var(--color-border);
+}

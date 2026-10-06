@@ -1,0 +1,13 @@
+---
+import type { Project } from '../../lib/projects';
+import { categories } from '../../data/site';
+interface Props { project: Project; }
+const { project: { data } } = Astro.props;
+const entries = [
+  { label: 'Domain', value: categories[data.category].label },
+  { label: 'Organization', value: data.organization }, { label: 'Project type', value: data.projectType },
+  { label: 'Period', value: data.dateRange ? `${data.dateRange.start} — ${data.dateRange.end ?? 'Present'}` : data.date },
+  { label: 'My role', value: data.role }, { label: 'Status', value: data.status === 'starter' ? 'Starter content / review pending' : data.status },
+].filter(entry => entry.value);
+---
+<dl class="metadata">{entries.map(entry => <div><dt>{entry.label}</dt><dd>{entry.value}</dd></div>)}</dl>

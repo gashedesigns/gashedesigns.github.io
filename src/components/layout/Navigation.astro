@@ -1,0 +1,8 @@
+---
+const links = [{ href: '/', label: 'Home', section: 'home' }, { href: '/projects/', label: 'Projects', section: 'projects' }, { href: '/experience/', label: 'Experience', section: 'experience' }, { href: '/about/', label: 'About', section: 'about' }];
+const path = Astro.url.pathname.replace(/\/$/, '');
+---
+<nav class="navigation" data-nav aria-label="Main navigation">
+  {links.map(link => <a href={link.href} data-nav-target={link.section} aria-current={path === link.href.replace(/\/$/, '') || (link.href === '/projects/' && path.startsWith('/projects/')) ? 'page' : undefined}>{link.label}</a>)}
+  <span class="nav-indicator" aria-hidden="true"></span>
+</nav>

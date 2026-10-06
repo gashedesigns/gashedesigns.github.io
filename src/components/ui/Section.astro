@@ -1,0 +1,8 @@
+---
+import Container from './Container.astro';
+interface Props { id?: string; title: string; eyebrow?: string; description?: string; alternate?: boolean; grid?: boolean; navSection?: string; }
+const { id, title, eyebrow, description, alternate = false, grid = false, navSection } = Astro.props;
+---
+<section id={id} class:list={['section', { 'section-alt': alternate, 'background-grid': grid }]} aria-label={title} data-section={id ?? 'content'} data-nav-section={navSection}>
+  <Container><div class="section-heading" data-reveal><div>{eyebrow && <p class="eyebrow">{eyebrow}</p>}<h2>{title}</h2>{description && <p class="muted">{description}</p>}</div><slot name="action" /></div><slot /></Container>
+</section>

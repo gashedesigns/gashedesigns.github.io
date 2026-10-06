@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Callout from '../components/ui/Callout.astro';
+import ContactCTA from '../components/sections/ContactCTA.astro';
+import { background } from '../data/site';
+---
+<BaseLayout title="Experience"><section class="page-intro" data-section="experience"><Container><p class="eyebrow">Experience / Background</p><h1>Research meets implementation.</h1><div class="prose"><p class="lede">{background.summary}</p><Callout>{background.note} No employment history, credentials, or dates have been inferred.</Callout><h2>Experimental systems</h2><p>Diagnostics, optical and thermal instrumentation, distributed sensors, and data acquisition.</p><h2>Engineering development</h2><p>Design, fabrication, embedded systems, telemetry, controls, and aerospace engineering.</p><h2>Modeling & analysis</h2><p>CFD, plasma modeling, numerical methods, and scientific computing.</p><p><a href="/projects/">Explore project case studies ↗</a></p></div></Container></section><ContactCTA /></BaseLayout>
